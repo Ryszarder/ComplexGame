@@ -1,0 +1,28 @@
+
+
+
+vec3 ParticlePositions[100000];
+vec3 ParticleVelocities[100000];
+
+uniform float deltaTime;
+
+void ComputeShader()
+{
+	ParticlePositions[invocationID] += ParticleVelocities[invocationID] * deltaTime;
+}
+
+
+
+///Over on C++ side
+
+
+glBindBuffer(GL_SHADER_BUFFER_STORAGE, whateverYourBufferIsCalled);
+
+shader->Bind();
+glDispatchCompute(100000);
+
+glBindBuffer(GL_SHADER_BUFFER_STORAGE, 0);
+glBindBuffer(GL_VERTEX_ARRAY, whateverYourBufferIsCalled);
+glDrawArrays(GL_POINTS, whatever);
+
+
