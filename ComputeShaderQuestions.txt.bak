@@ -1,0 +1,63 @@
+//////////
+std140 or std430.
+whats the difference.
+layout(std140, binding = 0) buffer data
+{
+
+};
+
+or
+
+layout(std430, binding = 0) buffer data
+{
+
+};
+////////// 	Use std430 but don't use vec3. just use vec4 and don't worry about w aka last value in vec4.
+
+
+//////////
+what decides layout local x size.
+i've seen x being 1 or 128.
+layout(local_size_x = ?, local_size_y = 1, local_size_z = 1) in;
+////////// 	x should equal 128.
+
+
+//////////
+Have separate layouts for each variable or have all variables in one layout.
+layout(std430, binding = 0) buffer position	{};
+layout(std430, binding = 1) buffer velocity {};
+
+or
+
+layout(std430, binding = 0) buffer data		{};
+////////// 	the second layout but have the variable inside the brackets.
+			With the size of max particles in variable brackets.
+			layout(std430, binding = 0) buffer data		
+			{
+				vec4 position[MAX_PARTICLES_SIZE];
+				vec4 veclocity[MAX_PARTICLES_SIZE];
+			};
+
+
+//////////
+what does variable do.
+struct Particles
+{
+	vec3 vel;
+	vec pos;
+};
+layout(std430, binding = 0) buffer data
+{
+	Particles particles[];
+} variable;
+
+main
+{
+	variable.particles[];
+};
+//////////	variable is the name of the layout.
+
+
+//////////
+what does glBindBufferBase and how is it differet to glbindbuffer.
+//////////	Bind the buffer to a specific binding point in an indexed array.
