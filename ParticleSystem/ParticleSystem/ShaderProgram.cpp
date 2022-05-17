@@ -2,17 +2,19 @@
 #include "Utilities.h"
 #include <iostream>
 
-ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFilename)
+ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFilename, std::string computeFilename)
 {
 	everythingIsOkay = true;
 
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	computeShader = glCreateShader(GL_COMPUTE_SHADER);
 	
 	shaderProgram = glCreateProgram();
 	
 	std::string vertexSource = LoadFileAsString(vertexFilename);
 	std::string fragmentSource = LoadFileAsString(fragmentFilename);
+	std::string computeSource = LoadFileAsString(computeFilename);
 	
 	const char* vertexSourceC = vertexSource.c_str();
 
@@ -54,7 +56,27 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFil
 		std::cout << "Everything is okay (with the fragment shader at least)" << std::endl;
 	}
 
+	const char* computeSourceC = computeSource.c_str();
 
+	glShaderSource(computeShader, 1, &computeSourceC, nullptr);
+	glCompileShader(computeShader);
+
+	glGetShaderiv(computeShader, GL_COMPILE_STATUS, &success);
+	if (success == GL_FALSE)
+	{
+		//Something failed with the compute shader compilation
+		std::cout << "Compute shader " << computeFilename << " failed becuase..." << std::endl;
+		glGetShaderInfoLog(computeShader, 512, nullptr, errorLog);
+		std::cout << errorLog << std::endl;
+		everythingIsOkay = false;
+	}
+	else
+	{
+		std::cout << "Everything is okay (with the compute shader at least)" << std::endl;
+	}
+
+
+	glAttachShader(shaderProgram, computeShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glAttachShader(shaderProgram, vertexShader);
 	glLinkProgram(shaderProgram);
