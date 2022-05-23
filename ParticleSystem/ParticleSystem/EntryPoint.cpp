@@ -1,8 +1,9 @@
 #include "Graphics.h"
 
 #include <math.h>
+#include "Utilities.h"
 #include "ShaderProgram.h"
-
+#include "ParticleRenderer.h"
 #include <iostream>
 
 #include "glm.hpp"
@@ -36,12 +37,18 @@ int main(void)
 
 	glEnable(GL_DEPTH_TEST);
 
+	ParticleRenderer particle;
+
+	ShaderProgram shader("ParticleShader.vert", "ParticleShader.frag", "ParticleShader.comp");
+
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
 	{
 		//Clear the screen - eventually do rendering code here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		particle.Draw(shader);
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);

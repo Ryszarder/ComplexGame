@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="ParticleRenderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Utilities.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="glad.h" />
     <ClInclude Include="khrplatform.h" />
+    <ClInclude Include="ParticleRenderer.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
