@@ -21,19 +21,39 @@ ParticleRenderer::ParticleRenderer()
 	glBufferData(GL_SHADER_STORAGE_BUFFER, NUM_PARTICLES * sizeof(Particle), nullptr, GL_STATIC_DRAW);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
+	//glEnableVertexAttribArray(0);
+	//glEnableVertexAttribArray(1);
+	//glEnableVertexAttribArray(2);
 }
 
 ParticleRenderer::~ParticleRenderer()
 {
 }
 
-void ParticleRenderer::Draw(ShaderProgram particleShader)
+void ParticleRenderer::Update(ShaderProgram particleShader)
 {
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
+
+	particleShader.UseShader();
+	glDispatchCompute(NUM_PARTICLES / WORK_GROUP_SIZE, 1, 1);
+	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 }
 
-void ParticleRenderer::Update()
+void ParticleRenderer::Draw(ShaderProgram particleShader)
 {
+	particleShader.UseShader();
+
+	glBindBuffer(GL_VERTEX_ARRAY, particleVAO);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), 0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)(4 * sizeof(float)));
+	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)(8 * sizeof(float)));
+
+	glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
+
+	glBindBuffer(GL_VERTEX_ARRAY, 0);
 }

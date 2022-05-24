@@ -1,12 +1,13 @@
 #version 450
 
-layout (location = 0) in vec3 Position;
-layout (location = 0) in vec3 Velocity;
-layout (location = 0) in vec3 Colour;
+layout (location = 0) in vec4 Position;
+layout (location = 1) in vec4 Velocity;
+layout (location = 2) in vec4 Colour;
 
-out vec3 _colour;
+out vec4 _colour;
 
 void main()
 {
-	gl_Position = vec4(Position, 1.0);
+	_colour = Colour;
+	gl_Position = Position;
 }

@@ -10,9 +10,9 @@ public:
 	ParticleRenderer();
 	~ParticleRenderer();
 
-	void Draw(ShaderProgram particleShader);
+	void Update(ShaderProgram particleShader);
 
-	void Update();
+	void Draw(ShaderProgram particleShader);
 
 private:
 	GLuint particleVAO;
