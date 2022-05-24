@@ -8,9 +8,9 @@
 #define WORK_GROUP_SIZE 128
 
 struct Particle {
-	glm::vec4 position{ 0, 0, 0, 0 };
-	glm::vec4 velocity{ 0, 0, 0, 0 };
-	glm::vec4 colour{ 0, 0, 0, 0 };
+	glm::vec4 position;
+	glm::vec4 velocity;
+	glm::vec4 colour;
 };
 
 ParticleRenderer::ParticleRenderer()
@@ -20,10 +20,6 @@ ParticleRenderer::ParticleRenderer()
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleVAO);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, NUM_PARTICLES * sizeof(Particle), nullptr, GL_STATIC_DRAW);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
-
-	//glEnableVertexAttribArray(0);
-	//glEnableVertexAttribArray(1);
-	//glEnableVertexAttribArray(2);
 }
 
 ParticleRenderer::~ParticleRenderer()

@@ -76,9 +76,9 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFil
 	}
 
 
-	glAttachShader(shaderProgram, computeShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, computeShader);
 	glLinkProgram(shaderProgram);
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (success == GL_FALSE)

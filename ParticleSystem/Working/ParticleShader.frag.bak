@@ -6,5 +6,5 @@ in vec4 _colour
 
 void main()
 {
-	FragColour = vec4(_colour, 1);
+	FragColour = _colour;
 }
