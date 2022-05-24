@@ -26,14 +26,14 @@ ParticleRenderer::~ParticleRenderer()
 {
 }
 
-void ParticleRenderer::Update(ShaderProgram particleShader)
-{
-	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
-
-	particleShader.UseShader();
-	glDispatchCompute(NUM_PARTICLES / WORK_GROUP_SIZE, 1, 1);
-	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
-}
+//void ParticleRenderer::Update(ShaderProgram particleShader)
+//{
+//	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
+//
+//	particleShader.UseShader();
+//	glDispatchCompute(NUM_PARTICLES / WORK_GROUP_SIZE, 1, 1);
+//	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+//}
 
 void ParticleRenderer::Draw(ShaderProgram particleShader)
 {

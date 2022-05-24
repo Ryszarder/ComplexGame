@@ -39,7 +39,8 @@ int main(void)
 
 	ParticleRenderer particle;
 
-	ShaderProgram shader("ParticleShader.vert", "ParticleShader.frag", "ParticleShader.comp");
+	ShaderProgram shader("ParticleShader.vert", "ParticleShader.frag");
+	//ShaderProgram compute("ParticleShader.comp");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
@@ -48,7 +49,7 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		particle.Update(shader);
+		//particle.Update(shader);
 
 		particle.Draw(shader);
 		//Swapping the buffers - this means this frame is over

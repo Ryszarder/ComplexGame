@@ -10,7 +10,7 @@ public:
 	ParticleRenderer();
 	~ParticleRenderer();
 
-	void Update(ShaderProgram particleShader);
+	//void Update(ShaderProgram particleShader);
 
 	void Draw(ShaderProgram particleShader);
 

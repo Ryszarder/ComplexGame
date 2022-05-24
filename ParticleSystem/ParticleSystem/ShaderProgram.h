@@ -9,16 +9,18 @@ class ShaderProgram
 private:
 	//Remember, OpenGL manages its resources itself and gives you handles to them.
 	//That's what all this 'GLuint' business is about.
+	GLuint shaderProgram;
 	GLuint vertexShader;
 	GLuint fragmentShader;
+	GLuint computeProgram;
 	GLuint computeShader;
-	GLuint shaderProgram;
 
 	bool everythingIsOkay = false;
 
 public:
 	ShaderProgram() {}
-	ShaderProgram(std::string vertexFilename, std::string fragmentFilename, std::string computeFilename);
+	ShaderProgram(std::string vertexFilename, std::string fragmentFilename);
+	ShaderProgram(std::string computeFilename);
 
 	~ShaderProgram() {}	//TODO this should free the resources of shader.
 
