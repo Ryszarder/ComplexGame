@@ -57,7 +57,6 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFil
 
 	glAttachShader(shaderProgram, fragmentShader);
 	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, computeShader);
 	glLinkProgram(shaderProgram);
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (success == GL_FALSE)
@@ -76,37 +75,37 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFil
 
 }
 
-ShaderProgram::ShaderProgram(std::string computeFilename)
-{
-	everythingIsOkay = true;
-
-	computeShader = glCreateShader(GL_COMPUTE_SHADER);
-
-	std::string computeSource = LoadFileAsString(computeFilename);
-
-	computeProgram = glCreateProgram();
-
-	const char* computeSourceC = computeSource.c_str();
-
-	glShaderSource(computeShader, 1, &computeSourceC, nullptr);
-	glCompileShader(computeShader);
-
-	GLchar errorLog[512];
-	GLint success = 0;
-	glGetShaderiv(computeShader, GL_COMPILE_STATUS, &success);
-	if (success == GL_FALSE)
-	{
-		//Something failed with the compute shader compilation
-		std::cout << "Compute shader " << computeFilename << " failed becuase..." << std::endl;
-		glGetShaderInfoLog(computeShader, 512, nullptr, errorLog);
-		std::cout << errorLog << std::endl;
-		everythingIsOkay = false;
-	}
-	else
-	{
-		std::cout << "Everything is okay (with the compute shader at least)" << std::endl;
-	}
-}
+//ShaderProgram::ShaderProgram(std::string computeFilename)
+//{
+//	everythingIsOkay = true;
+//
+//	computeShader = glCreateShader(GL_COMPUTE_SHADER);
+//
+//	std::string computeSource = LoadFileAsString(computeFilename);
+//
+//	computeProgram = glCreateProgram();
+//
+//	const char* computeSourceC = computeSource.c_str();
+//
+//	glShaderSource(computeShader, 1, &computeSourceC, nullptr);
+//	glCompileShader(computeShader);
+//
+//	GLchar errorLog[512];
+//	GLint success = 0;
+//	glGetShaderiv(computeShader, GL_COMPILE_STATUS, &success);
+//	if (success == GL_FALSE)
+//	{
+//		Something failed with the compute shader compilation
+//		std::cout << "Compute shader " << computeFilename << " failed becuase..." << std::endl;
+//		glGetShaderInfoLog(computeShader, 512, nullptr, errorLog);
+//		std::cout << errorLog << std::endl;
+//		everythingIsOkay = false;
+//	}
+//	else
+//	{
+//		std::cout << "Everything is okay (with the compute shader at least)" << std::endl;
+//	}
+//}
 
 
 void ShaderProgram::UseShader()

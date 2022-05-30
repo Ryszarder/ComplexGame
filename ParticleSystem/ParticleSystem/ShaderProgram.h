@@ -12,15 +12,15 @@ private:
 	GLuint shaderProgram;
 	GLuint vertexShader;
 	GLuint fragmentShader;
-	GLuint computeProgram;
-	GLuint computeShader;
+	//GLuint computeProgram;
+	//GLuint computeShader;
 
 	bool everythingIsOkay = false;
 
 public:
 	ShaderProgram() {}
 	ShaderProgram(std::string vertexFilename, std::string fragmentFilename);
-	ShaderProgram(std::string computeFilename);
+	//ShaderProgram(std::string computeFilename);
 
 	~ShaderProgram() {}	//TODO this should free the resources of shader.
 

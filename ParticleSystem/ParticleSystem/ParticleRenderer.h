@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Graphics.h"
+#include "Particle.h"
 
 class ShaderProgram;
 
@@ -13,6 +14,8 @@ public:
 	//void Update(ShaderProgram particleShader);
 
 	void Draw(ShaderProgram particleShader);
+
+	std::vector<Particle> m_Vparticles;
 
 private:
 	GLuint particleVAO;
