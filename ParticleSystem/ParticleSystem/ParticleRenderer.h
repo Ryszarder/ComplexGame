@@ -11,9 +11,9 @@ public:
 	ParticleRenderer();
 	~ParticleRenderer();
 
-	//void Update(ShaderProgram particleShader);
+	void Update(ShaderProgram particleShader);
 
-	void Draw(ShaderProgram particleShader);
+	void Draw(ShaderProgram particleShader, ShaderProgram vertFragShader);
 
 	std::vector<Particle> m_Vparticles;
 

@@ -16,6 +16,17 @@ layout(local_size_x = 128, local_size_y = 1, local_size_z = 1) in;
 
 void main()
 {
-
-
+	const vec3 gravity = vec3(0, -9.8f, 0);
+	const float deltaTime = 0.1f;
+	
+	uint gid = gl_GlobalInvocationID.x;	
+	
+	vec3 p = particles[gid].position.xyz;
+	vec3 v = particles[gid].veclocity.xyz;
+	
+	vec3 pp = p + v * deltaTime + 0.5f * deltaTime * deltaTime * gravity;
+	vec3 vp = v + gravity * deltaTime;
+	
+	particles[gid].position.xyz += pp;
+	particles[gid].veclocity.xyz += vp;
 }
