@@ -51,7 +51,7 @@ int main(void)
 
 		particle.Update(compute);
 
-		particle.Draw(compute, shader);
+		particle.Draw(shader);
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);
 

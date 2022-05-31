@@ -9,11 +9,13 @@ class ShaderProgram
 private:
 	//Remember, OpenGL manages its resources itself and gives you handles to them.
 	//That's what all this 'GLuint' business is about.
-	GLuint shaderProgram;
 	GLuint vertexShader;
 	GLuint fragmentShader;
-	GLuint computeProgram;
 	GLuint computeShader;
+
+	GLuint shaderProgram;
+	//GLuint computeProgram;
+
 
 	bool everythingIsOkay = false;
 
@@ -26,9 +28,7 @@ public:
 
 	bool IsEverythingOkay() const { return everythingIsOkay; }
 
-	void UseShaderVertFrag();
-
-	void UseShaderComp();
+	void UseShader();
 
 	GLuint GetUniformLocation(std::string varName);
 

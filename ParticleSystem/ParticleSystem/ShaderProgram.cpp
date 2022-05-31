@@ -83,7 +83,7 @@ ShaderProgram::ShaderProgram(std::string computeFilename)
 
 	std::string computeSource = LoadFileAsString(computeFilename);
 
-	computeProgram = glCreateProgram();
+	shaderProgram = glCreateProgram();
 
 	const char* computeSourceC = computeSource.c_str();
 
@@ -106,13 +106,13 @@ ShaderProgram::ShaderProgram(std::string computeFilename)
 		std::cout << "Everything is okay (with the compute shader at least)" << std::endl;
 	}
 
-	glAttachShader(computeProgram, computeShader);
-	glLinkProgram(computeProgram);
-	glGetProgramiv(computeProgram, GL_LINK_STATUS, &success);
+	glAttachShader(shaderProgram, computeShader);
+	glLinkProgram(shaderProgram);
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (success == GL_FALSE)
 	{
 		std::cout << "The linking is busted or something" << std::endl;
-		glGetProgramInfoLog(computeProgram, 512, nullptr, errorLog);
+		glGetProgramInfoLog(shaderProgram, 512, nullptr, errorLog);
 		std::cout << errorLog << std::endl;
 		everythingIsOkay = false;
 	}
@@ -125,14 +125,9 @@ ShaderProgram::ShaderProgram(std::string computeFilename)
 }
 
 
-void ShaderProgram::UseShaderVertFrag()
+void ShaderProgram::UseShader()
 {
 	glUseProgram(shaderProgram);
-}
-
-void ShaderProgram::UseShaderComp()
-{
-	glUseProgram(computeProgram);
 }
 
 GLuint ShaderProgram::GetUniformLocation(std::string varName)
@@ -143,27 +138,27 @@ GLuint ShaderProgram::GetUniformLocation(std::string varName)
 void ShaderProgram::SetUniform(std::string varName, float value)
 {
 	GLuint varLoc = glGetUniformLocation(shaderProgram, varName.c_str());
-	UseShaderVertFrag();
+	UseShader();
 	glUniform1f(varLoc, value);
 }
 
 void ShaderProgram::SetUniform(std::string varName, int value)
 {
 	GLuint varLoc = glGetUniformLocation(shaderProgram, varName.c_str());
-	UseShaderVertFrag();
+	UseShader();
 	glUniform1i(varLoc, value);
 }
 
 void ShaderProgram::SetUniform(std::string varName, glm::vec3 value)
 {
 	GLuint varLoc = glGetUniformLocation(shaderProgram, varName.c_str());
-	UseShaderVertFrag();
+	UseShader();
 	glUniform3f(varLoc, value.x, value.y, value.z);
 }
 
 void ShaderProgram::SetUniform(std::string varName, glm::mat4 value)
 {
 	GLuint varLoc = glGetUniformLocation(shaderProgram, varName.c_str());
-	UseShaderVertFrag();
+	UseShader();
 	glUniformMatrix4fv(varLoc, 1, GL_FALSE, &value[0][0]);
 }
