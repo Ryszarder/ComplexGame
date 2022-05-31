@@ -26,7 +26,9 @@ public:
 
 	bool IsEverythingOkay() const { return everythingIsOkay; }
 
-	void UseShader();
+	void UseShaderVertFrag();
+
+	void UseShaderComp();
 
 	GLuint GetUniformLocation(std::string varName);
 

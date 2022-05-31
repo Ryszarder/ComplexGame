@@ -40,13 +40,13 @@ ParticleRenderer::ParticleRenderer()
 		m_Vparticles.push_back(thisParticle);
 	}
 
-	glBindBuffer(GL_ARRAY_BUFFER, particleVAO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	//glBindBuffer(GL_ARRAY_BUFFER, particleVAO);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
+	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	//glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleVAO);
-	//glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
-	//glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleVAO);
+	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -61,8 +61,8 @@ void ParticleRenderer::Update(ShaderProgram particleShader)
 {
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
-	particleShader.UseShader();
-	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
+	particleShader.UseShaderComp();
+	glDispatchCompute(NUM_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 }
 
@@ -71,7 +71,7 @@ void ParticleRenderer::Draw(ShaderProgram particleShader, ShaderProgram vertFrag
 	//particleShader.UseShader();
 	//glBindBuffer(GL_VERTEX_ARRAY, particleVAO);
 
-	vertFragShader.UseShader();
+	vertFragShader.UseShaderVertFrag();
 	glBindBuffer(GL_ARRAY_BUFFER, particleVAO);
 
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, position));
@@ -79,7 +79,7 @@ void ParticleRenderer::Draw(ShaderProgram particleShader, ShaderProgram vertFrag
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, colour));
 
 
-	glDrawArrays(GL_POINTS, 0, MAX_PARTICLES);
+	glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
