@@ -23,14 +23,14 @@ ParticleRenderer::ParticleRenderer()
 	{
 		Particle thisParticle;
 
-		thisParticle.position.x = ((float)rand() / (float)(RAND_MAX)) * (0.5f - -0.5f) + -0.5f;
-		thisParticle.position.y = ((float)rand() / (float)(RAND_MAX)) * (0.5f - -0.5f) + -0.5f;
-		thisParticle.position.z = ((float)rand() / (float)(RAND_MAX)) * (0.5f - -0.5f) + -0.5f;;
+		thisParticle.position.x = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
+		thisParticle.position.y = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
+		thisParticle.position.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;;
 		thisParticle.position.w = 1.0f;
 
-		thisParticle.velocity.x = ((float)rand() / (float)(RAND_MAX)) * (0.5f - -0.5f) + -0.5f;
-		thisParticle.velocity.y = ((float)rand() / (float)(RAND_MAX)) * (0.5f - -0.5f) + -0.5f;
-		thisParticle.velocity.z = ((float)rand() / (float)(RAND_MAX)) * (0.5f - -0.5f) + -0.5f;;
+		thisParticle.velocity.x = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
+		thisParticle.velocity.y = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
+		thisParticle.velocity.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;;
 		thisParticle.velocity.w = 1.0f;
 
 		thisParticle.colour.x = (float)rand() / (float)RAND_MAX;
