@@ -22,12 +22,16 @@ void main()
 	uint gid = gl_GlobalInvocationID.x;	
 	
 	const float dt = deltaTime;
+	const vec3 gravity = vec3(0.0f, 0.5f, 0.0f);
+	vec3 force = gravity * 0.2f * dt;
+	vec3 acc = force / 0.2f;
 	
 	vec3 p = particles[gid].position.xyz;
 	vec3 v = particles[gid].veclocity.xyz;
 	
 	vec3 pp = v * dt;
-	vec3 vp = v * 0.00005f * dt;
+	vec3 vp = acc;
+	//vec3 vp = v * 0.00005f * dt;
 	
 	particles[gid].position.xyz += pp;
 	particles[gid].veclocity.xyz += vp;	
