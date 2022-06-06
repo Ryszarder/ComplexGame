@@ -33,9 +33,13 @@ ParticleRenderer::ParticleRenderer()
 		thisParticle.velocity.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;;
 		thisParticle.velocity.w = 1.0f;
 
-		thisParticle.colour.x = (float)rand() / (float)RAND_MAX;
-		thisParticle.colour.y = (float)rand() / (float)RAND_MAX;
-		thisParticle.colour.z = (float)rand() / (float)RAND_MAX;
+		thisParticle.colour.x = 1.0f;
+		thisParticle.colour.y = 1.0f;
+		thisParticle.colour.z = 1.0f;
+		
+		//thisParticle.colour.x = (float)rand() / (float)RAND_MAX;
+		//thisParticle.colour.y = (float)rand() / (float)RAND_MAX;
+		//thisParticle.colour.z = (float)rand() / (float)RAND_MAX;
 		thisParticle.colour.w = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
@@ -48,6 +52,8 @@ ParticleRenderer::ParticleRenderer()
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
+
+	m_Tsprite = new Texture("Texture/particle.png");
 }
 
 ParticleRenderer::~ParticleRenderer()
@@ -85,6 +91,10 @@ void ParticleRenderer::Draw(ShaderProgram vertFragShader)
 	glm::mat4 model = glm::mat4(1.0f);
 
 	vertFragShader.SetUniform("mvpMatrix", projection * view * model);
+
+	vertFragShader.SetUniform("sprite", 0);
+
+	m_Tsprite->Bind(0);
 
 	glPointSize(5);
 

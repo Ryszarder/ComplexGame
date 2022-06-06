@@ -2,17 +2,19 @@
 #include "Utilities.h"
 #include <iostream>
 
-ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFilename)
+ShaderProgram::ShaderProgram(std::string vertexFilename, std::string geometryFilename, std::string fragmentFilename)
 {
 	everythingIsOkay = true;
 
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	geometryShader = glCreateShader(GL_GEOMETRY_SHADER);
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
 	
 	shaderProgram = glCreateProgram();
 	
 	std::string vertexSource = LoadFileAsString(vertexFilename);
+	std::string geometrySource = LoadFileAsString(geometryFilename);
 	std::string fragmentSource = LoadFileAsString(fragmentFilename);
 	
 	const char* vertexSourceC = vertexSource.c_str();
@@ -36,6 +38,25 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFil
 		std::cout << "Everything is okay (with the vertex shader at least)" << std::endl;
 	}
 
+	const char* geometrySourceC = geometrySource.c_str();
+
+	glShaderSource(geometryShader, 1, &geometrySourceC, nullptr);
+	glCompileShader(geometryShader);
+
+	glGetShaderiv(geometryShader, GL_COMPILE_STATUS, &success);
+	if (success == GL_FALSE)
+	{
+		//Something failed with the fragment shader compilation
+		std::cout << "Geometry shader " << geometryFilename << " failed because..." << std::endl;
+		glGetShaderInfoLog(geometryShader, 512, nullptr, errorLog);
+		std::cout << errorLog << std::endl;
+		everythingIsOkay = false;
+	}
+	else
+	{
+		std::cout << "Everything is okay (with the geometry shader at least)" << std::endl;
+	}
+
 	const char* fragmentSourceC = fragmentSource.c_str();
 
 	glShaderSource(fragmentShader, 1, &fragmentSourceC, nullptr);
@@ -56,6 +77,7 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string fragmentFil
 	}
 
 	glAttachShader(shaderProgram, fragmentShader);
+	glAttachShader(shaderProgram, geometryShader);
 	glAttachShader(shaderProgram, vertexShader);
 	glLinkProgram(shaderProgram);
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);

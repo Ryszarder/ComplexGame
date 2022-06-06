@@ -10,6 +10,7 @@ private:
 	//Remember, OpenGL manages its resources itself and gives you handles to them.
 	//That's what all this 'GLuint' business is about.
 	GLuint vertexShader;
+	GLuint geometryShader;
 	GLuint fragmentShader;
 	GLuint computeShader;
 
@@ -21,7 +22,7 @@ private:
 
 public:
 	ShaderProgram() {}
-	ShaderProgram(std::string vertexFilename, std::string fragmentFilename);
+	ShaderProgram(std::string vertexFilename, std::string geometryFilename, std::string fragmentFilename);
 	ShaderProgram(std::string computeFilename);
 
 	~ShaderProgram() {}	//TODO this should free the resources of shader.

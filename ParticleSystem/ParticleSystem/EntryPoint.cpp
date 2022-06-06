@@ -39,7 +39,7 @@ int main(void)
 
 	ParticleRenderer particle;
 
-	ShaderProgram shader("ParticleShader.vert", "ParticleShader.frag");
+	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 	ShaderProgram compute("ParticleShader.comp");
 
 	//The main 'game' loop
