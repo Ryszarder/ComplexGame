@@ -3,12 +3,14 @@
 layout (location = 0) in vec4 Position;
 layout (location = 1) in vec4 Velocity;
 layout (location = 2) in vec4 Colour;
-layout (location = 3) in float Age;
 
 out vec4 _colour;
+
+uniform mat4 mvpMatrix;
 
 void main()
 {
 	_colour = Colour;
 	gl_Position = Position;
+	//gl_Position = mvpMatrix * Position;
 }
