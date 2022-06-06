@@ -1,4 +1,4 @@
-#include "ParticleRenderer.h"
+#include "ParticleSystem.h"
 #include "Graphics.h"
 #include "ShaderProgram.h"
 

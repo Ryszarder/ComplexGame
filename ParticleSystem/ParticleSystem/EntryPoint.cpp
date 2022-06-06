@@ -3,7 +3,7 @@
 #include <math.h>
 #include "Utilities.h"
 #include "ShaderProgram.h"
-#include "ParticleRenderer.h"
+#include "ParticleSystem.h"
 #include <iostream>
 
 #include "glm.hpp"

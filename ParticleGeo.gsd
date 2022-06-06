@@ -1,0 +1,45 @@
+#version 410
+
+
+layout (points) in;
+layout (triangle_strip, max_vertices = 4) out;
+
+uniform float halfSize;	//The 'radius' of the quad.
+uniform float inverseAspect;
+
+out vec2 vertUVs;
+out vec3 vertColour;
+out vec2 vertVelocity;
+
+in vec3 dropletColour[];
+in vec2 dropletVelocity[];
+
+
+void main()
+{	
+	gl_Position = gl_in[0].gl_Position - vec4(halfSize * inverseAspect, -halfSize, 0, 0);
+	vertUVs = vec2(1.0, 0.0);
+	vertColour = dropletColour[0];
+	vertVelocity = dropletVelocity[0];
+	EmitVertex();
+	
+	gl_Position = gl_in[0].gl_Position - vec4(-halfSize * inverseAspect, -halfSize, 0, 0);
+	vertUVs = vec2(0.0, 0.0);
+	vertColour = dropletColour[0];
+	vertVelocity = dropletVelocity[0];
+	EmitVertex();
+	
+	gl_Position = gl_in[0].gl_Position - vec4(halfSize * inverseAspect, halfSize, 0, 0);
+	vertUVs = vec2(1.0, 1.0);
+	vertColour = dropletColour[0];
+	vertVelocity = dropletVelocity[0];
+	EmitVertex();
+	
+	gl_Position = gl_in[0].gl_Position - vec4(-halfSize * inverseAspect, halfSize, 0, 0);
+	vertUVs = vec2(0.0, 1.0);
+	vertColour = dropletColour[0];
+	vertVelocity = dropletVelocity[0];
+	EmitVertex();
+	
+	EndPrimitive();
+}

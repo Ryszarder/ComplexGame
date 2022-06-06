@@ -33,7 +33,7 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleRenderer.cpp">
+    <ClCompile Include="ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleRenderer.h">
+    <ClInclude Include="ParticleSystem.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Particle.h">
