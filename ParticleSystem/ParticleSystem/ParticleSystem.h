@@ -6,11 +6,11 @@
 
 class ShaderProgram;
 
-class ParticleRenderer
+class ParticleSystem
 {
 public:
-	ParticleRenderer();
-	~ParticleRenderer();
+	ParticleSystem();
+	~ParticleSystem();
 
 	void Update(ShaderProgram particleShader);
 

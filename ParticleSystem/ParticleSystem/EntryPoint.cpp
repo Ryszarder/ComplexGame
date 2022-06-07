@@ -64,10 +64,12 @@ int main(void)
 	}
 	*/
 
-	ParticleRenderer particle;
+	ParticleSystem particle;
+	ParticleSystem particle2;
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 	ShaderProgram compute("ParticleShader.comp");
+	ShaderProgram compute2("SomeOtherParticleShader.comp");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
@@ -77,6 +79,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		particle.Update(compute);
+		particle2.Update(compute2);
 
 		particle.Draw(shader);
 

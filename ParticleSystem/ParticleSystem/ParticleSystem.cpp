@@ -12,7 +12,7 @@
 #define WORK_GROUP_SIZE 128
 #define MAX_PARTICLES 16384
 
-ParticleRenderer::ParticleRenderer()
+ParticleSystem::ParticleSystem()
 {
 	double lastTime = glfwGetTime();
 	srand((unsigned)time(NULL));
@@ -52,11 +52,11 @@ ParticleRenderer::ParticleRenderer()
 	m_Tsprite = new Texture("Texture/particle.png");
 }
 
-ParticleRenderer::~ParticleRenderer()
+ParticleSystem::~ParticleSystem()
 {
 }
 
-void ParticleRenderer::Update(ShaderProgram particleShader)
+void ParticleSystem::Update(ShaderProgram particleShader)
 {
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
@@ -71,7 +71,7 @@ void ParticleRenderer::Update(ShaderProgram particleShader)
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 }
 
-void ParticleRenderer::Draw(ShaderProgram vertFragShader)
+void ParticleSystem::Draw(ShaderProgram vertFragShader)
 {
 	vertFragShader.UseShader();
 	glBindBuffer(GL_ARRAY_BUFFER, particleVAO);
