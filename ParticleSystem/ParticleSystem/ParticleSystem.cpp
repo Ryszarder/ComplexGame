@@ -28,6 +28,10 @@ ParticleRenderer::ParticleRenderer()
 		thisParticle.position.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
 		thisParticle.position.w = 1.0f;
 
+		//thisParticle.velocity.x = -0.2f + (float)(rand()) / ( (float)(RAND_MAX / (0.2f - -0.2f)));
+		//thisParticle.velocity.y = -0.2f + (float)(rand()) / ( (float)(RAND_MAX / (0.2f - -0.2f)));
+		//thisParticle.velocity.z = -0.2f + (float)(rand()) / ( (float)(RAND_MAX / (0.2f - -0.2f)));
+
 		thisParticle.velocity.x = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
 		thisParticle.velocity.y = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
 		thisParticle.velocity.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
@@ -40,7 +44,7 @@ ParticleRenderer::ParticleRenderer()
 		//thisParticle.colour.x = (float)rand() / (float)RAND_MAX;
 		//thisParticle.colour.y = (float)rand() / (float)RAND_MAX;
 		//thisParticle.colour.z = (float)rand() / (float)RAND_MAX;
-		thisParticle.colour.w = 0.2f;
+		thisParticle.colour.w = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
 	};
