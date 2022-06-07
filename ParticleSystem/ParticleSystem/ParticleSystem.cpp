@@ -28,10 +28,6 @@ ParticleRenderer::ParticleRenderer()
 		thisParticle.position.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
 		thisParticle.position.w = 1.0f;
 
-		//thisParticle.velocity.x = -0.2f + (float)(rand()) / ( (float)(RAND_MAX / (0.2f - -0.2f)));
-		//thisParticle.velocity.y = -0.2f + (float)(rand()) / ( (float)(RAND_MAX / (0.2f - -0.2f)));
-		//thisParticle.velocity.z = -0.2f + (float)(rand()) / ( (float)(RAND_MAX / (0.2f - -0.2f)));
-
 		thisParticle.velocity.x = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
 		thisParticle.velocity.y = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
 		thisParticle.velocity.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
@@ -40,10 +36,6 @@ ParticleRenderer::ParticleRenderer()
 		thisParticle.colour.x = 1.0f;
 		thisParticle.colour.y = 1.0f;
 		thisParticle.colour.z = 1.0f;
-		
-		//thisParticle.colour.x = (float)rand() / (float)RAND_MAX;
-		//thisParticle.colour.y = (float)rand() / (float)RAND_MAX;
-		//thisParticle.colour.z = (float)rand() / (float)RAND_MAX;
 		thisParticle.colour.w = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
@@ -100,7 +92,7 @@ void ParticleRenderer::Draw(ShaderProgram vertFragShader)
 
 	m_Tsprite->Bind(0);
 
-	glPointSize(5);
+	//glPointSize(5);
 
 	glDrawArrays(GL_POINTS, 0, MAX_PARTICLES);
 

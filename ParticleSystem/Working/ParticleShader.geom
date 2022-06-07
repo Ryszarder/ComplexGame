@@ -14,23 +14,23 @@ void main()
 	float inverseAspect = 720.0f / 1280.0f;
 	
 	gl_Position = gl_in[0].gl_Position - vec4(0.1f * inverseAspect, -0.1f, 0, 0);
-	UVs = vec2(1.0f, 0.0f);
+	UVs = vec2(1.0, 0.0);
 	Colour = vertColour[0];
 	EmitVertex();
 	
 	gl_Position = gl_in[0].gl_Position - vec4(-0.1f * inverseAspect, -0.1f, 0, 0);
-	UVs = vec2(0.0f, 0.0f);		
+	UVs = vec2(0.0, 0.0);		
 	Colour = vertColour[0];
 	EmitVertex();
 	
 	gl_Position = gl_in[0].gl_Position - vec4(0.1f * inverseAspect, 0.1f, 0, 0);
-	UVs = vec2(1.0f, 1.0f);
+	UVs = vec2(1.0, 1.0);
 	Colour = vertColour[0];
 	EmitVertex();
 	
 	gl_Position = gl_in[0].gl_Position - vec4(-0.1f * inverseAspect, 0.1f, 0, 0);
 	Colour = vertColour[0];
-	UVs = vec2(0.0f, 1.0f);
+	UVs = vec2(0.0, 1.0);
 	EmitVertex();
 	
 	EndPrimitive();
