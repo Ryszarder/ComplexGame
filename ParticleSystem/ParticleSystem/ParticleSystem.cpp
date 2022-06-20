@@ -38,6 +38,8 @@ ParticleSystem::ParticleSystem()
 		thisParticle.colour.z = 1.0f;
 		thisParticle.colour.w = 1.0f;
 
+		thisParticle.isAlpha = 1.0f;
+
 		m_Vparticles.push_back(thisParticle);
 	};
 
@@ -48,6 +50,7 @@ ParticleSystem::ParticleSystem()
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
 
 	m_Tsprite = new Texture("Texture/particle.png");
 }
@@ -79,6 +82,7 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, position));
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, velocity));
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, colour));
+	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
 
 	glm::mat4 projection = glm::perspective(3.14159f / 4, 1280.0f / 720.0f, 0.1f, 100.0f);
 

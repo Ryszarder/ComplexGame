@@ -5,6 +5,7 @@ struct particleData
 	vec4 position;
 	vec4 veclocity;
 	vec4 colour;	
+	float isAlpha;
 	//float gravityMult;
 	//float damping;
 };
@@ -32,6 +33,6 @@ void main()
 	vec3 v = particles[gid].veclocity.xyz;
 	
 	particles[gid].position.xyz += v * dt;
-	particles[gid].veclocity.xyz += acc * dt;	
+	particles[gid].veclocity.xyz += acc * dt;
 	//particles[gid].veclocity.xyz *= particles[gid].damping;
 }
