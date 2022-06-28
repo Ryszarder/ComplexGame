@@ -5,7 +5,7 @@ struct particleData
 	vec4 position;
 	vec4 veclocity;
 	vec4 colour;	
-	float isAlpha;
+	//float isAlpha;
 	//float gravityMult;
 	//float damping;
 };

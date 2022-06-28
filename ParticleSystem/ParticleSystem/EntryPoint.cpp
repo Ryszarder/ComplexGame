@@ -38,8 +38,8 @@ int main(void)
 	//glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	//This one's for smoke (alpha)
-	glBlendEquation(GL_FUNC_ADD);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	//This one's for smoke (alpha)
+	//glBlendEquation(GL_FUNC_ADD);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	//glBlendFunc(GL_ONE, GL_ONE);	//This one's for fire (additive)
 
@@ -47,7 +47,8 @@ int main(void)
 
 
 
-	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);	//This is for premultiplied alpha - use it for everything!
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);	//This is for premultiplied alpha - use it for everything!
+	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 
 	/*
@@ -76,7 +77,7 @@ int main(void)
 	{
 		//Clear the screen - eventually do rendering code here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		particle.Update(compute);
 		//particle2.Update(compute2);
