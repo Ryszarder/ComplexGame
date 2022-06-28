@@ -82,7 +82,7 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, position));
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, velocity));
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, colour));
-	//glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
+	//glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
 
 	glm::mat4 projection = glm::perspective(3.14159f / 4, 1280.0f / 720.0f, 0.1f, 100.0f);
 
@@ -95,8 +95,6 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	vertFragShader.SetUniform("sprite", 0);
 
 	m_Tsprite->Bind(0);
-
-	//glPointSize(5);
 
 	glDrawArrays(GL_POINTS, 0, MAX_PARTICLES);
 

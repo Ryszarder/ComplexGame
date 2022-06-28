@@ -1,0 +1,40 @@
+#version 450
+
+struct particleData
+{
+	vec4 position;
+	vec4 veclocity;
+	vec4 colour;	
+	float isAlpha;
+	//float gravityMult;
+	//float damping;
+};
+
+layout(std430, binding = 0) buffer data
+{
+	particleData particles[];
+};
+
+layout(local_size_x = 128, local_size_y = 1, local_size_z = 1) in;
+
+uniform float deltaTime;
+
+
+void main()
+{
+	uint gid = gl_GlobalInvocationID.x;	
+	
+	const float dt = deltaTime;
+	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);
+	vec3 force = gravity;// * particles[gid].gravityMult;
+	vec3 acc = force / 20.0f;
+	
+	vec3 p = particles[gid].position.xyz;
+	vec3 v = particles[gid].veclocity.xyz;
+	
+	particles[gid].position.xyz += v * dt;
+	particles[gid].veclocity.xyz += acc * dt;
+	//particles[gid].veclocity.xyz *= particles[gid].damping;
+	
+	particles[gid].isAlpha = 0.0f;
+}

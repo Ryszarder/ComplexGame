@@ -35,20 +35,14 @@ int main(void)
 	if (!gladLoadGL())
 		return -1;
 
-	//glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
+
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);	//This is for premultiplied alpha - use it for everything!
 
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	//This one's for smoke (alpha)
 	//glBlendEquation(GL_FUNC_ADD);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 	//glBlendFunc(GL_ONE, GL_ONE);	//This one's for fire (additive)
-
-
-
-
-
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);	//This is for premultiplied alpha - use it for everything!
-	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 
 	/*
@@ -69,7 +63,7 @@ int main(void)
 	//ParticleSystem particle2;
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-	ShaderProgram compute("ParticleShader.comp");
+	ShaderProgram compute("ParticleSmoke.comp");
 	//ShaderProgram compute2("SomeOtherParticleShader.comp");
 
 	//The main 'game' loop
