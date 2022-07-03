@@ -14,12 +14,12 @@ void main()
 	
 	vec4 ParticleTex = texColour * Colour;
 	
-	if(Alpha == 1.0f)
-	{
-		FragColour = vec4(ParticleTex.rgb * ParticleTex.a, ParticleTex.a);
-	}
-	else
-	{
+	//if(Alpha == 1.0f)
+	//{
+	//	FragColour = vec4(ParticleTex.rgb * ParticleTex.a, ParticleTex.a);
+	//}
+	//else
+	//{
 		FragColour = vec4(ParticleTex.rgb, 0.0);
-	}
+	//}
 }
