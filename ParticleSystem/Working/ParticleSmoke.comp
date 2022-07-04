@@ -34,7 +34,8 @@ void main()
 	vec3 v = particles[gid].veclocity.xyz;
 	
 	particles[gid].position.xyz += v * dt;
-	particles[gid].veclocity.xyz += gravity * 0.0001;
+	//particles[gid].veclocity.xyz += gravity * 0.0001;
+	particles[gid].veclocity.xyz += acc * dt;
 	//particles[gid].veclocity.xyz *= particles[gid].damping;
 	particles[gid].isAlpha = 1.0f;
 }

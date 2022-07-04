@@ -7,16 +7,11 @@ layout (location = 3) in float Alpha;
 
 out vec4 vertColour;
 out float vertAlpha;
-//out vData
-//{
-//	float bAlpha;
-//} outData;
 
 uniform mat4 mvpMatrix;
 
 void main()
 {
-	//outData.bAlpha = Alpha;
 	vertAlpha = Alpha;
 	vertColour = Colour;
 	gl_Position = mvpMatrix * Position;
