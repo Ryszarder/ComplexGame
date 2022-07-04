@@ -35,6 +35,5 @@ void main()
 	particles[gid].position.xyz += v * dt;
 	particles[gid].veclocity.xyz += acc * dt;
 	//particles[gid].veclocity.xyz *= particles[gid].damping;
-	
-	particles[gid].
+	particles[gid].isAlpha = 0.0f;
 }

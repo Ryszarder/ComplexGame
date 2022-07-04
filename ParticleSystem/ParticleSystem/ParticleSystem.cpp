@@ -38,12 +38,16 @@ ParticleSystem::ParticleSystem()
 		thisParticle.colour.z = 1.0f;
 		thisParticle.colour.w = 1.0f;
 
-		//thisParticle.isAlpha = 1.0f;
+		thisParticle.isAlpha = 1.0f;
+
+		thisParticle.padding = 1.0f;
+		thisParticle.padding2 = 1.0f;
+		thisParticle.padding3 = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
 	};
 
-	glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleVAO);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
@@ -52,7 +56,7 @@ ParticleSystem::ParticleSystem()
 	glEnableVertexAttribArray(2);
 	glEnableVertexAttribArray(3);
 
-	m_Tsprite = new Texture("Texture/Fire.png");
+	m_Tsprite = new Texture("Texture/particle3.png");
 }
 
 ParticleSystem::~ParticleSystem()
@@ -82,7 +86,7 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, position));
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, velocity));
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, colour));
-	//glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
+	glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
 
 	glm::mat4 projection = glm::perspective(3.14159f / 4, 1280.0f / 720.0f, 0.1f, 100.0f);
 
