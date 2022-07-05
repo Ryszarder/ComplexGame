@@ -12,7 +12,7 @@ public:
 	ParticleSystem();
 	~ParticleSystem();
 
-	void Update(ShaderProgram particleShader);
+	void Update(ShaderProgram particleShader, int i);
 
 	void Draw(ShaderProgram vertFragShader);
 
@@ -20,7 +20,8 @@ public:
 
 private:
 	GLuint particleVAO;
-	Texture* m_Tsprite;
+	Texture* m_Tsmoke;
+	Texture* m_Tfire;
 	double lastTime = 0.0f;
 	double currentTime = 0.0f;
 	float deltaTime = 0.0f;

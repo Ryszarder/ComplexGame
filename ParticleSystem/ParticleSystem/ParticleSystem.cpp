@@ -38,7 +38,8 @@ ParticleSystem::ParticleSystem()
 		thisParticle.colour.z = 1.0f;
 		thisParticle.colour.w = 1.0f;
 
-		thisParticle.isAlpha = 1.0f;
+		//thisParticle.isAlpha = 1.0f;
+		thisParticle.isAlpha = ((float)rand() / (float)(RAND_MAX));
 
 		thisParticle.padding = 1.0f;
 		thisParticle.padding2 = 1.0f;
@@ -56,16 +57,17 @@ ParticleSystem::ParticleSystem()
 	glEnableVertexAttribArray(2);
 	glEnableVertexAttribArray(3);
 
-	m_Tsprite = new Texture("Texture/particle3.png");
+	m_Tsmoke = new Texture("Texture/particle3.png");
+	m_Tfire = new Texture("Texture/Fire.png");
 }
 
 ParticleSystem::~ParticleSystem()
 {
 }
 
-void ParticleSystem::Update(ShaderProgram particleShader)
+void ParticleSystem::Update(ShaderProgram particleShader, int i)
 {
-	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, i, particleVAO);
 
 	currentTime = glfwGetTime();
 	deltaTime = float(currentTime - lastTime);
@@ -96,9 +98,11 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 
 	vertFragShader.SetUniform("mvpMatrix", projection * view * model);
 
-	vertFragShader.SetUniform("sprite", 0);
+	vertFragShader.SetUniform("smoke", 0);
+	vertFragShader.SetUniform("fire", 1);
 
-	m_Tsprite->Bind(0);
+	m_Tsmoke->Bind(0);
+	m_Tfire->Bind(1);
 
 	glDrawArrays(GL_POINTS, 0, MAX_PARTICLES);
 
