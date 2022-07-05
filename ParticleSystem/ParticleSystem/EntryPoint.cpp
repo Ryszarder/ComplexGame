@@ -73,8 +73,8 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		particle.Update(compute, 0);
-		//particle.Update(compute2, 1);
+		particle.Update(compute);
+		//particle.Update(compute2);
 		particle.Draw(shader);
 
 

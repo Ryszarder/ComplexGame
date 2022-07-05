@@ -12,7 +12,7 @@ public:
 	ParticleSystem();
 	~ParticleSystem();
 
-	void Update(ShaderProgram particleShader, int i);
+	void Update(ShaderProgram particleShader);
 
 	void Draw(ShaderProgram vertFragShader);
 
