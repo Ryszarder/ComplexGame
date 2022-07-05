@@ -63,8 +63,8 @@ int main(void)
 	//ParticleSystem particle2;
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-	ShaderProgram compute("ParticleSmoke.comp");
-	//ShaderProgram compute2("ParticleFire.comp");
+	ShaderProgram smoke("ParticleSmoke.comp");
+	ShaderProgram fire("ParticleFire.comp");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
@@ -73,8 +73,8 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		particle.Update(compute);
-		//particle.Update(compute2);
+		particle.Update(smoke);
+		//particle.Update(fire);
 		particle.Draw(shader);
 
 
