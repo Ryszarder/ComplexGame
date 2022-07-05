@@ -50,7 +50,7 @@ ParticleSystem::ParticleSystem()
 
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, particleVAO);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
-	glBindBuffer(GL_SHADER_STORAGE_BUFFER, particleVAO);
+	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -67,7 +67,7 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::Update(ShaderProgram particleShader)
 {
-	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, particleVAO);
 
 	currentTime = glfwGetTime();
 	deltaTime = float(currentTime - lastTime);
