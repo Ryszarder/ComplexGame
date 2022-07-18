@@ -22,6 +22,7 @@ private:
 	GLuint particleVAO;
 	Texture* m_Tsmoke;
 	Texture* m_Tfire;
+	ShaderProgram* m_shader;
 	double lastTime = 0.0f;
 	double currentTime = 0.0f;
 	float deltaTime = 0.0f;

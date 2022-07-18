@@ -26,12 +26,12 @@ void main()
 		FragColour = vec4(ParticleTex.rgb * ParticleTex.a, ParticleTex.a);
 		//FragColour = vec4(1, 0, 0, 1);
 	}
-	else
-	{
-		vec4 texColour = texture(fire, UVs);
-		vec4 ParticleTex = texColour * Colour;
-		
-		FragColour = vec4(ParticleTex.rgb, 0.0);
-		FragColour = vec4(0, 0, 1, 1);
-	}
+	//else
+	//{
+	//	vec4 texColour = texture(fire, UVs);
+	//	vec4 ParticleTex = texColour * Colour;
+	//	
+	//	FragColour = vec4(ParticleTex.rgb, 0.0);
+	//	//FragColour = vec4(0, 0, 1, 1);
+	//}
 }

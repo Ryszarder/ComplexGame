@@ -60,7 +60,7 @@ int main(void)
 	*/
 
 	ParticleSystem particle;
-	//ParticleSystem particle2;
+	ParticleSystem particle2;
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 	ShaderProgram smoke("ParticleSmoke.comp");
@@ -73,9 +73,11 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		//particle.Draw(shader);
 		particle.Update(smoke);
-		//particle.Update(fire);
-		particle.Draw(shader);
+		particle2.Update(fire);
+		particle.Draw(shader); 
+		particle2.Draw(shader);
 
 
 		//Swapping the buffers - this means this frame is over
