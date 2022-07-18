@@ -22,7 +22,7 @@ uniform float deltaTime;
 
 void main()
 {
-	uint gid = gl_LocalInvocationIndex.x;	
+	uint gid = gl_GlobalInvocationID.x;	
 	
 	const float dt = deltaTime;
 	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);
@@ -33,6 +33,7 @@ void main()
 	vec3 v = particles[gid].veclocity.xyz;
 
 	particles[gid].position.xyz += v * dt;
+	particles[gid].veclocity.xyz += gravity * 0.0001;
 	particles[gid].veclocity.xyz += acc * dt;
 	//particles[gid].veclocity.xyz *= particles[gid].damping;
 	particles[gid].isAlpha = 0.0f;

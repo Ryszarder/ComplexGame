@@ -27,30 +27,15 @@ void main()
 	
 	const float dt = deltaTime;
 	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);
-	vec3 force = gravity;// * particles[gid].gravityMult;
+	vec3 force = gravity * -0.5f;// * particles[gid].gravityMult;
 	vec3 acc = force / 20.0f;
 	
 	vec3 p = particles[gid].position.xyz;
 	vec3 v = particles[gid].veclocity.xyz;
-	
+
 	particles[gid].position.xyz += v * dt;
-	//particles[gid].veclocity.xyz += gravity * 0.0001;
-	//particles[gid].veclocity.xyz += acc * dt;
-	particles[gid].veclocity.xyz = vec3(0.0f, 0.0f, 0.0f);
+	particles[gid].veclocity.xyz += gravity * 0.0001;
+	particles[gid].veclocity.xyz += acc * dt;
 	//particles[gid].veclocity.xyz *= particles[gid].damping;
-	particles[gid].isAlpha = 1.0f;
-	
-	
-	
-	//if(particles2[gid].isAlpha > 0.5f && particles[gid].isAlpha > 0.5f)
-	//{
-	//	particles[gid].position.xyz += v * dt;
-	//	particles[gid].veclocity.xyz = vec3(0.0f, 0.0f, 0.0f);		
-	//}
-	//else
-	//{
-	//	particles2[gid].position.xyz += v * dt;
-	//	particles2[gid].veclocity.xyz += acc * dt;
-	//	
-	//}
+	//particles[gid].isAlpha = 1.0f;
 }

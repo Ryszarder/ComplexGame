@@ -15,8 +15,6 @@ private:
 	GLuint computeShader;
 
 	GLuint shaderProgram;
-	//GLuint computeProgram;
-
 
 	bool everythingIsOkay = false;
 

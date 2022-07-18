@@ -38,8 +38,8 @@ ParticleSystem::ParticleSystem()
 		thisParticle.colour.z = 1.0f;
 		thisParticle.colour.w = 1.0f;
 
-		//thisParticle.isAlpha = 1.0f;
 		thisParticle.isAlpha = ((float)rand() / (float)(RAND_MAX));
+		thisParticle.isAlpha = 1.0f;
 
 		thisParticle.padding = 1.0f;
 		thisParticle.padding2 = 1.0f;

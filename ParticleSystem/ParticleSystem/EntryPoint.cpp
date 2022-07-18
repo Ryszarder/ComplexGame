@@ -37,30 +37,10 @@ int main(void)
 
 	glEnable(GL_BLEND);
 
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);	//This is for premultiplied alpha - use it for everything!
-
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);	//This one's for smoke (alpha)
-	//glBlendEquation(GL_FUNC_ADD);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	//glBlendFunc(GL_ONE, GL_ONE);	//This one's for fire (additive)
-
-
-	/*
-	FragColour = colour;	//No premultiplied alpha
-
-	if(isAlphaParticle)
-	{
-		FragColour = vec4(colour.rgb * colour.a, colour.a); //Premultiplied alpha
-	}
-	else
-	{
-		//It's an additive particle
-		FragColour = vec4(colour.rgb, 0.0);
-	}
-	*/
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	ParticleSystem particle;
-	ParticleSystem particle2;
+	//ParticleSystem particle2;
 
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
@@ -76,8 +56,9 @@ int main(void)
 
 		particle.Update(smoke);
 		particle.Draw(shader); 
-		particle2.Update(fire);
-		particle2.Draw(shader);
+
+		//particle2.Update(fire);
+		//particle2.Draw(shader);
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);
