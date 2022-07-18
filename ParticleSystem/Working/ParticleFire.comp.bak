@@ -10,7 +10,7 @@ struct particleData
 	//float damping;
 };
 
-layout(std430, binding = 1) buffer data
+layout(std430, binding = 0) buffer data
 {
 	particleData particles[];
 };
@@ -22,7 +22,7 @@ uniform float deltaTime;
 
 void main()
 {
-	uint gid = gl_GlobalInvocationID.x;	
+	uint gid = gl_LocalInvocationIndex.x;	
 	
 	const float dt = deltaTime;
 	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);

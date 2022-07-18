@@ -48,11 +48,7 @@ ParticleSystem::ParticleSystem()
 		m_Vparticles.push_back(thisParticle);
 	};
 
-	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, particleVAO);
-	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
-	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
-
-	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, particleVAO);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
@@ -69,17 +65,9 @@ ParticleSystem::~ParticleSystem()
 {
 }
 
-void ParticleSystem::Update(ShaderProgram particleShader, int i)
+void ParticleSystem::Update(ShaderProgram particleShader)
 {
-	//if (i == 1)
-	//{
-	//	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, particleVAO);
-	//}
-	//else
-	//{
-	//	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 2, particleVAO);
-	//}
-	glBindBuffer(GL_ARRAY_BUFFER, particleVAO);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
 	currentTime = glfwGetTime();
 	deltaTime = float(currentTime - lastTime);
@@ -90,6 +78,7 @@ void ParticleSystem::Update(ShaderProgram particleShader, int i)
 	particleShader.UseShader();
 	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
+	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, 0);
 }
 
 void ParticleSystem::Draw(ShaderProgram vertFragShader)
