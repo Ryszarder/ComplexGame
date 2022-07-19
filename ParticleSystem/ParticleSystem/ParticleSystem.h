@@ -27,6 +27,5 @@ private:
 	//Texture* particleTexture;
 	//ShaderProgram* m_shader;
 	double lastTime = 0.0f;
-	double currentTime = 0.0f;
 	float deltaTime = 0.0f;
 };

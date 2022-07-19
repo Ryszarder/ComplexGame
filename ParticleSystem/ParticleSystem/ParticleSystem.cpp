@@ -9,13 +9,13 @@
 #include <time.h>   
 
 #define NUM_PARTICLES 1024 * 1024
-#define WORK_GROUP_SIZE 128
+#define WORK_GROUP_SIZE 1
 #define MAX_PARTICLES 16384
 
 ParticleSystem::ParticleSystem()
 {
-	double lastTime = glfwGetTime();
 	srand((unsigned)time(NULL));
+
 
 	glGenBuffers(1, &particleVAO);
 
@@ -38,12 +38,22 @@ ParticleSystem::ParticleSystem()
 		thisParticle.colour.z = 1.0f;
 		thisParticle.colour.w = 1.0f;
 
-		thisParticle.isAlpha = ((float)rand() / (float)(RAND_MAX));
-		thisParticle.isAlpha = 1.0f;
+		//thisParticle.isAlpha = ((float)rand() / (float)(RAND_MAX));
+		//thisParticle.isAlpha = 1.0f;
 
-		thisParticle.padding = 1.0f;
-		thisParticle.padding2 = 1.0f;
-		thisParticle.padding3 = 1.0f;
+		//thisParticle.padding = 1.0f;
+		//thisParticle.padding2 = 1.0f;
+		//thisParticle.padding3 = 1.0f;
+
+		//thisParticle.age = 100.0f;
+
+		//thisParticle.padding4 = 1.0f;
+		//thisParticle.padding5 = 1.0f;
+		//thisParticle.padding6 = 1.0f;
+		thisParticle.alphaAge.x = 1.0f;
+		thisParticle.alphaAge.y = ((float)rand() / (float)(RAND_MAX)) + 1;
+		thisParticle.alphaAge.z = 1.0f;
+		thisParticle.alphaAge.w = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
 	};
@@ -56,6 +66,7 @@ ParticleSystem::ParticleSystem()
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 	glEnableVertexAttribArray(3);
+	//glEnableVertexAttribArray(8);
 
 	m_Tsmoke = new Texture("Texture/particle3.png");
 	m_Tfire = new Texture("Texture/Fire.png");
@@ -67,15 +78,20 @@ ParticleSystem::~ParticleSystem()
 
 void ParticleSystem::Update(ShaderProgram particleShader)
 {
+	srand((unsigned)time(NULL));
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 
-	currentTime = glfwGetTime();
-	deltaTime = float(currentTime - lastTime);
+	double currentTime = glfwGetTime();
+	deltaTime = (float)(currentTime - lastTime);
 	lastTime = currentTime;
 
-	particleShader.SetUniform("deltaTime", deltaTime);
+	float age = ((float)rand() / (float)(RAND_MAX)) + 1;
 
 	particleShader.UseShader();
+
+	particleShader.SetUniform("deltaTime", deltaTime);
+	particleShader.SetUniform("age", age);
+
 	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, 0);
@@ -90,7 +106,9 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, position));
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, velocity));
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, colour));
-	glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
+	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, alphaAge));
+	//glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
+	//glVertexAttribPointer(8, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, age));
 
 	glm::mat4 projection = glm::perspective(3.14159f / 4, 1280.0f / 720.0f, 0.1f, 100.0f);
 
