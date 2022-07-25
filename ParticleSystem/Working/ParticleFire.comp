@@ -25,7 +25,7 @@ void main()
 	uint gid = gl_GlobalInvocationID.x;	
 	
 	const float dt = deltaTime;
-	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);
+	const vec3 gravity = vec3(0.0f, -9.82f, 0.0f);
 	vec3 force = gravity * -1.2f;// * particles[gid].gravityMult;
 	vec3 acc = force / 20.0f;
 	
@@ -35,7 +35,7 @@ void main()
 	particles[gid].alphaAge.y -= dt;
 	if(particles[gid].alphaAge.y < 0)
 	{
-		particles[gid].position.xyz = vec3(0.0f, 0.0f, 0.0f);
+		particles[gid].position.xyz = vec3(0.5f, 0.0f, 0.5f);
 		particles[gid].alphaAge.y = particles[gid].alphaAge.z;
 	}
 	

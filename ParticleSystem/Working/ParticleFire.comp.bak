@@ -30,12 +30,12 @@ void main()
 	vec3 acc = force / 20.0f;
 	
 	vec3 p = particles[gid].position.xyz;
-	vec3 v = particles[gid].veclocity.xyz;
+	vec3 v = particles[gid].velocity.xyz;
 	
 	particles[gid].alphaAge.y -= dt;
 	if(particles[gid].alphaAge.y < 0)
 	{
-		particles[gid].position.xyz = vec3(0.0f, 0.0f, 0.0f);
+		particles[gid].position.xyz = vec3(0.5f, 0.0f, 0.5f);
 		particles[gid].alphaAge.y = particles[gid].alphaAge.z;
 	}
 	
