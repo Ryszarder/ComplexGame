@@ -3,7 +3,7 @@
 struct particleData
 {
 	vec4 position;
-	vec4 veclocity;
+	vec4 velocity;
 	vec4 colour;
 	vec4 alphaAge;
 	//vec4 otherShit;	//x is alpha, y is gravity etc
@@ -18,7 +18,7 @@ layout(std430, binding = 0) buffer data
 	particleData particles[];
 };
 
-layout(local_size_x = 1, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 128, local_size_y = 1, local_size_z = 1) in;
 
 uniform float deltaTime;
 
@@ -28,24 +28,31 @@ void main()
 	uint gid = gl_GlobalInvocationID.x;	
 	
 	const float dt = deltaTime;
-	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);
-	vec3 force = gravity * -1.5f;// * particles[gid].gravityMult;
-	vec3 acc = force / 20.0f;
+	const vec3 gravity = vec3(0.0f, 0.2f, 0.0f); //-9.82f
+	vec3 force = gravity * dt * 0.5f;// 4.0f;// * particles[gid].gravityMult;
+	vec3 acc = force / 4.0f;// * dt;
+	//vec3 acc = vec3(0.0f, 0.0f, 0.0f);
 	
 	vec3 p = particles[gid].position.xyz;
-	vec3 v = particles[gid].veclocity.xyz;
+	vec3 v = particles[gid].velocity.xyz;
 	
 	particles[gid].alphaAge.y -= dt;
 	if(particles[gid].alphaAge.y < 0)
 	{
 		particles[gid].position.xyz = vec3(0.0f, 0.0f, 0.0f);
-		particles[gid].alphaAge.y = 1.0f;
+		particles[gid].alphaAge.y = particles[gid].alphaAge.z;
 	}
 	
+	particles[gid].velocity.xyz += force * dt;
 	particles[gid].position.xyz += v * dt;
-	particles[gid].veclocity.xyz += acc * dt;
-	particles[gid].veclocity.xyz += gravity * 0.0001;
-	//particles[gid].veclocity.xyz *= 0.1f; //particles[gid].damping;
+	
+	//particles[gid].position.xyz += v * dt;
+	//particles[gid].velocity.xyz += acc * dt;
+	//particles[gid].velocity.xyz += gravity * 0.0001;
+	//particles[gid].velocity.xyz *= 0.999f; //particles[gid].damping;
+	//particles[gid].velocity.xyz *= 0.999f;
+
+
 
 	//if(particles[gid].alphaAge.x < 0.5)
 	//{
@@ -54,6 +61,6 @@ void main()
 	//		particles[gid].position.xyz = vec3(0.0f, 0.0f, 0.0f);
 	//	}
 	//}
-	//particles[gid].veclocity.xyz *= particles[gid].damping;
+	//particles[gid].velocity.xyz *= particles[gid].damping;
 	//particles[gid].isAlpha = 1.0f;
 }

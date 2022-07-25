@@ -51,8 +51,8 @@ ParticleSystem::ParticleSystem()
 		//thisParticle.padding5 = 1.0f;
 		//thisParticle.padding6 = 1.0f;
 		thisParticle.alphaAge.x = 1.0f;
-		thisParticle.alphaAge.y = ((float)rand() / (float)(RAND_MAX)) + 1;
-		thisParticle.alphaAge.z = 1.0f;
+		thisParticle.alphaAge.y = ((float)rand() / (float)(RAND_MAX)) + 1.0f;
+		thisParticle.alphaAge.z = ((float)rand() / (float)(RAND_MAX)) + 1.0f;
 		thisParticle.alphaAge.w = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
@@ -85,12 +85,9 @@ void ParticleSystem::Update(ShaderProgram particleShader)
 	deltaTime = (float)(currentTime - lastTime);
 	lastTime = currentTime;
 
-	float age = ((float)rand() / (float)(RAND_MAX)) + 1;
-
 	particleShader.UseShader();
 
 	particleShader.SetUniform("deltaTime", deltaTime);
-	particleShader.SetUniform("age", age);
 
 	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
