@@ -8,8 +8,7 @@
 #include <random>
 #include <time.h>   
 
-#define NUM_PARTICLES 1024 * 1024
-#define WORK_GROUP_SIZE 1
+#define WORK_GROUP_SIZE 128
 #define MAX_PARTICLES 16384
 
 ParticleSystem::ParticleSystem()
