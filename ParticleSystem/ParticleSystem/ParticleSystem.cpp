@@ -38,22 +38,15 @@ ParticleSystem::ParticleSystem()
 		thisParticle.colour.z = 1.0f;
 		thisParticle.colour.w = 1.0f;
 
-		//thisParticle.isAlpha = ((float)rand() / (float)(RAND_MAX));
-		//thisParticle.isAlpha = 1.0f;
-
-		//thisParticle.padding = 1.0f;
-		//thisParticle.padding2 = 1.0f;
-		//thisParticle.padding3 = 1.0f;
-
-		//thisParticle.age = 100.0f;
-
-		//thisParticle.padding4 = 1.0f;
-		//thisParticle.padding5 = 1.0f;
-		//thisParticle.padding6 = 1.0f;
 		thisParticle.alphaAge.x = 1.0f;
 		thisParticle.alphaAge.y = ((float)rand() / (float)(RAND_MAX)) + 1.0f;
 		thisParticle.alphaAge.z = ((float)rand() / (float)(RAND_MAX)) + 1.0f;
 		thisParticle.alphaAge.w = 1.0f;
+
+		thisParticle.newVelocity.x = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
+		thisParticle.newVelocity.y = ((float)rand() / (float)(RAND_MAX));
+		thisParticle.newVelocity.z = ((float)rand() / (float)(RAND_MAX)) + -0.5f;
+		thisParticle.newVelocity.w = 1.0f;
 
 		m_Vparticles.push_back(thisParticle);
 	};
@@ -61,12 +54,6 @@ ParticleSystem::ParticleSystem()
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
-
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glEnableVertexAttribArray(2);
-	glEnableVertexAttribArray(3);
-	//glEnableVertexAttribArray(8);
 
 	m_Tsmoke = new Texture("Texture/particle3.png");
 	m_Tfire = new Texture("Texture/Fire.png");
@@ -104,8 +91,13 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, velocity));
 	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, colour));
 	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, alphaAge));
-	//glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, isAlpha));
-	//glVertexAttribPointer(8, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, age));
+	glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Particle), (void*)offsetof(Particle, newVelocity));
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
+	glEnableVertexAttribArray(4);
 
 	glm::mat4 projection = glm::perspective(3.14159f / 4, 1280.0f / 720.0f, 0.1f, 100.0f);
 

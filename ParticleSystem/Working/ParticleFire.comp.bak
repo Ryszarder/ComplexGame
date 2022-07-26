@@ -6,9 +6,7 @@ struct particleData
 	vec4 velocity;
 	vec4 colour;	
 	vec4 alphaAge;	
-	//float isAlpha;
-	//float gravityMult;
-	//float damping;
+	vec4 newVelocity;	
 };
 
 layout(std430, binding = 0) buffer data
@@ -25,8 +23,8 @@ void main()
 	uint gid = gl_GlobalInvocationID.x;	
 	
 	const float dt = deltaTime;
-	const vec3 gravity = vec3(0.0f, -10.5f, 0.0f);
-	vec3 force = gravity * -1.2f;// * particles[gid].gravityMult;
+	const vec3 gravity = vec3(0.0f, -9.82f, 0.0f);
+	vec3 force = gravity * -1.2f;
 	vec3 acc = force / 20.0f;
 	
 	vec3 p = particles[gid].position.xyz;
@@ -42,6 +40,5 @@ void main()
 	particles[gid].position.xyz += v * dt;
 	particles[gid].velocity.xyz += acc * dt * 0.1f;
 	particles[gid].velocity.xyz += gravity * 0.0001;
-	//particles[gid].velocity.xyz *= particles[gid].damping;
 	particles[gid].alphaAge.x = 0.0f;
 }

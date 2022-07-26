@@ -39,7 +39,7 @@ int main(void)
 
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-	//ParticleSystem particle;
+	ParticleSystem particle;
 	ParticleSystem particle2;
 
 
@@ -54,8 +54,8 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//particle.Update(smoke);
-		//particle.Draw(shader); 
+		particle.Update(smoke);
+		particle.Draw(shader); 
 
 		particle2.Update(fire);
 		particle2.Draw(shader);

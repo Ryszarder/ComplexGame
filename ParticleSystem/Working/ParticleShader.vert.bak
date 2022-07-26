@@ -15,7 +15,7 @@ uniform mat4 mvpMatrix;
 void main()
 {
 	//vertAlpha = Alpha;
-	vertAlpha = testValue.x;
+	vertAlpha = alphaAge.x;
 	vertColour = Colour;
 	gl_Position = mvpMatrix * Position;
 }

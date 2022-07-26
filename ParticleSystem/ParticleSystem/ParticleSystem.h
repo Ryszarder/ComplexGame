@@ -23,9 +23,6 @@ private:
 	Texture* m_Tsmoke;
 	Texture* m_Tfire;
 
-	//GLuint particleVAO;
-	//Texture* particleTexture;
-	//ShaderProgram* m_shader;
 	double lastTime = 0.0f;
 	float deltaTime = 0.0f;
 };
