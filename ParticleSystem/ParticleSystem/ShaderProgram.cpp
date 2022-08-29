@@ -89,18 +89,19 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string geometryFil
 		everythingIsOkay = false;
 	}
 
-
 	if (everythingIsOkay)
 	{
 		std::cout << "It appears that things are pretty okay" << std::endl;
 	}
 
+	//glDeleteShader(fragmentShader);
+	//glDeleteShader(geometryShader);
+	//glDeleteShader(vertexShader);
 }
 
 ShaderProgram::ShaderProgram(std::string computeFilename)
 {
 	everythingIsOkay = true;
-
 	computeShader = glCreateShader(GL_COMPUTE_SHADER);
 
 	std::string computeSource = LoadFileAsString(computeFilename);
@@ -139,11 +140,21 @@ ShaderProgram::ShaderProgram(std::string computeFilename)
 		everythingIsOkay = false;
 	}
 
-
 	if (everythingIsOkay)
 	{
 		std::cout << "It appears that things are pretty okay" << std::endl;
 	}
+
+	//glDeleteShader(computeShader);
+}
+
+ShaderProgram::~ShaderProgram()
+{
+	glDeleteProgram(shaderProgram);
+	glDeleteShader(fragmentShader);
+	glDeleteShader(geometryShader);
+	glDeleteShader(vertexShader);
+	glDeleteShader(computeShader);
 }
 
 
@@ -183,4 +194,9 @@ void ShaderProgram::SetUniform(std::string varName, glm::mat4 value)
 	GLuint varLoc = glGetUniformLocation(shaderProgram, varName.c_str());
 	UseShader();
 	glUniformMatrix4fv(varLoc, 1, GL_FALSE, &value[0][0]);
+}
+
+void ShaderProgram::ClearPrograms()
+{
+	glUseProgram(0);
 }

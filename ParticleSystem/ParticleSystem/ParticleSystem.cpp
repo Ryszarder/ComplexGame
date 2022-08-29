@@ -60,9 +60,10 @@ ParticleSystem::ParticleSystem()
 
 ParticleSystem::~ParticleSystem()
 {
+	//glDeleteBuffers(1, &particleVAO);
 }
 
-void ParticleSystem::Update(ShaderProgram particleShader)
+void ParticleSystem::Update(ShaderProgram& particleShader)
 {
 	srand((unsigned)time(NULL));
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
@@ -78,9 +79,10 @@ void ParticleSystem::Update(ShaderProgram particleShader)
 	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, 0);
+	particleShader.ClearPrograms();
 }
 
-void ParticleSystem::Draw(ShaderProgram vertFragShader)
+void ParticleSystem::Draw(ShaderProgram& vertFragShader)
 {
 	vertFragShader.UseShader();
 
@@ -115,4 +117,6 @@ void ParticleSystem::Draw(ShaderProgram vertFragShader)
 	glDrawArrays(GL_POINTS, 0, MAX_PARTICLES);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	vertFragShader.ClearPrograms();
 }

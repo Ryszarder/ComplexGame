@@ -12,9 +12,12 @@ public:
 	ParticleSystem();
 	~ParticleSystem();
 
-	void Update(ShaderProgram particleShader);
+	void Update(ShaderProgram& particleShader);
 
-	void Draw(ShaderProgram vertFragShader);
+	void Draw(ShaderProgram& vertFragShader);
+
+	ParticleSystem& operator=(const ParticleSystem& other) = delete;
+	ParticleSystem(const ParticleSystem& other) = delete;
 
 	std::vector<Particle> m_Vparticles;
 
