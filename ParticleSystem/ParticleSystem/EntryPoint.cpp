@@ -40,12 +40,12 @@ int main(void)
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	ParticleSystem particle;
-	//ParticleSystem particle2;
+	ParticleSystem particle2;
 
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 	ShaderProgram smoke("ParticleSmoke.comp");
-	//ShaderProgram fire("ParticleFire.comp");
+	ShaderProgram fire("ParticleFire.comp");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
@@ -57,8 +57,8 @@ int main(void)
 		particle.Update(smoke);
 		particle.Draw(shader); 
 
-		//particle2.Update(fire);
-		//particle2.Draw(shader);
+		particle2.Update(fire);
+		particle2.Draw(shader);
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);

@@ -58,6 +58,11 @@ ParticleSystem::ParticleSystem()
 	m_Tfire = new Texture("Texture/Fire.png");
 }
 
+ParticleSystem::~ParticleSystem()
+{
+	glDeleteBuffers(1, &particleVAO);
+}
+
 void ParticleSystem::Update(ShaderProgram& particleShader)
 {
 	srand((unsigned)time(NULL));
