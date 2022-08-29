@@ -13,8 +13,10 @@
 
 ParticleSystem::ParticleSystem()
 {
-	srand((unsigned)time(NULL));
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
+	srand((unsigned)time(NULL));
 
 	glGenBuffers(1, &particleVAO);
 
@@ -113,9 +115,18 @@ void ParticleSystem::Draw(ShaderProgram& vertFragShader)
 	m_Tsmoke->Bind(0);
 	m_Tfire->Bind(1);
 
+	//vertFragShader.SetUniform("partTex", 0);
+	//
+	//m_Ttexture->Bind(0);
+
 	glDrawArrays(GL_POINTS, 0, MAX_PARTICLES);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	vertFragShader.ClearPrograms();
+}
+
+void ParticleSystem::ParticleTexture(std::string partTex)
+{
+	//m_Ttexture = new Texture(partTex);
 }

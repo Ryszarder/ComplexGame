@@ -35,17 +35,17 @@ int main(void)
 	if (!gladLoadGL())
 		return -1;
 
-	glEnable(GL_BLEND);
+	//glEnable(GL_BLEND);
 
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	ParticleSystem particle;
 	ParticleSystem particle2;
 
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-	ShaderProgram smoke("ParticleSmoke.comp");
-	ShaderProgram fire("ParticleFire.comp");
+	ShaderProgram smoke("ParticlePremultiplied.comp");
+	ShaderProgram fire("ParticleAdditive.comp");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))

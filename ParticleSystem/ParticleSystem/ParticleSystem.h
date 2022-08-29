@@ -16,6 +16,8 @@ public:
 
 	void Draw(ShaderProgram& vertFragShader);
 
+	void ParticleTexture(std::string partTexure);
+
 	ParticleSystem& operator=(const ParticleSystem& other) = delete;
 	ParticleSystem(const ParticleSystem& other) = delete;
 
@@ -25,6 +27,7 @@ private:
 	GLuint particleVAO;
 	Texture* m_Tsmoke;
 	Texture* m_Tfire;
+	//Texture* m_Ttexture;
 
 	double lastTime = 0.0f;
 	float deltaTime = 0.0f;
