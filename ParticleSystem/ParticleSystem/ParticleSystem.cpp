@@ -58,11 +58,6 @@ ParticleSystem::ParticleSystem()
 	m_Tfire = new Texture("Texture/Fire.png");
 }
 
-ParticleSystem::~ParticleSystem()
-{
-	//glDeleteBuffers(1, &particleVAO);
-}
-
 void ParticleSystem::Update(ShaderProgram& particleShader)
 {
 	srand((unsigned)time(NULL));
@@ -79,7 +74,6 @@ void ParticleSystem::Update(ShaderProgram& particleShader)
 	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, 0);
-	particleShader.ClearPrograms();
 }
 
 void ParticleSystem::Draw(ShaderProgram& vertFragShader)

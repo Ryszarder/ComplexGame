@@ -10,7 +10,7 @@ class ParticleSystem
 {
 public:
 	ParticleSystem();
-	~ParticleSystem();
+	~ParticleSystem() {};
 
 	void Update(ShaderProgram& particleShader);
 
