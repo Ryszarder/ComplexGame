@@ -42,10 +42,9 @@ int main(void)
 	ParticleSystem particle;
 	ParticleSystem particle2;
 
-
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-	ShaderProgram smoke("ParticlePremultiplied.comp");
-	ShaderProgram fire("ParticleAdditive.comp");
+	ShaderProgram Premultiplied("ParticlePremultiplied.comp");
+	ShaderProgram Additive("ParticleAdditive.comp");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
@@ -54,10 +53,10 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		particle.Update(smoke);
+		particle.Update(Premultiplied);
 		particle.Draw(shader); 
 
-		particle2.Update(fire);
+		particle2.Update(Additive);
 		particle2.Draw(shader);
 
 		//Swapping the buffers - this means this frame is over
