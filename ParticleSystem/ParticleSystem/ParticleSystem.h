@@ -23,8 +23,6 @@ public:
 
 private:
 	GLuint particleVAO;
-	Texture* m_Tsmoke;
-	Texture* m_Tfire;
 	Texture* m_Ttexture;
 
 	double lastTime = 0.0f;

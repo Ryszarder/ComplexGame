@@ -8,7 +8,7 @@ in float Alpha;
 
 //uniform sampler2D smoke;
 //uniform sampler2D fire;
-uniform sampler2D partText;
+uniform sampler2D partTex;
 
 void main()
 {	
