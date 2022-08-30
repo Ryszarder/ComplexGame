@@ -9,8 +9,12 @@ public:
 	ParticleManager();
 	~ParticleManager();
 
-	void UpdatePrem();
+	void SetPrem();
 
+	void UpdatePre();
+
+	void SetAdd();
+	
 	void UpdateAdd();
 
 	void DrawParticle();
@@ -18,6 +22,10 @@ public:
 	void SetTexture(std::string textureSetter);
 
 private:
+	ParticleSystem* particle;
 
+	ShaderProgram* shader;
+	ShaderProgram* premultiplied;
+	ShaderProgram* additive;
 };
 

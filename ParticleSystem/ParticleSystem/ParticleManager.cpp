@@ -2,8 +2,9 @@
 
 ParticleManager::ParticleManager()
 {
-	ParticleSystem newParticle;
+	particle = new ParticleSystem;
 
+	shader = new ShaderProgram("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 }
 
 ParticleManager::~ParticleManager()
@@ -11,20 +12,29 @@ ParticleManager::~ParticleManager()
 
 }
 
-void ParticleManager::UpdatePrem()
+void ParticleManager::SetPrem()
 {
-	ShaderProgram premultiplied("ParticlePremultiplied.comp");
+	premultiplied = new ShaderProgram("ParticlePremultiplied.comp");
+}
+
+void ParticleManager::UpdatePre()
+{
+	particle->Update(*premultiplied);
+}
+
+void ParticleManager::SetAdd()
+{
+	additive = new ShaderProgram("ParticleAdditive.comp");
 }
 
 void ParticleManager::UpdateAdd()
 {
-	ShaderProgram additive("ParticleAdditive.comp");
+	particle->Update(*additive);
 }
 
 void ParticleManager::DrawParticle()
 {
-	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-
+	particle->Draw(*shader);
 }
 
 void ParticleManager::SetTexture(std::string textureSetter)

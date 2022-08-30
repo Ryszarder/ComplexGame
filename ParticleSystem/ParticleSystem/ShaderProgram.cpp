@@ -155,7 +155,6 @@ ShaderProgram::~ShaderProgram()
 	//glDeleteShader(geometryShader);
 	//glDeleteShader(vertexShader);
 	//glDeleteShader(computeShader);
-	std::cout << "Hit delete" << std::endl;
 }
 
 

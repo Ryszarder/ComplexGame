@@ -63,6 +63,8 @@ ParticleSystem::ParticleSystem()
 ParticleSystem::~ParticleSystem()
 {
 	glDeleteBuffers(1, &particleVAO);
+	delete m_Tsmoke;
+	delete m_Tfire;
 }
 
 void ParticleSystem::Update(ShaderProgram& particleShader)

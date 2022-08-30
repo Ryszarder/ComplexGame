@@ -29,6 +29,7 @@ Texture::Texture(std::string filename)
     glBindTexture(GL_TEXTURE_2D, 0);
 
     stbi_image_free(imageData);
+    successfullyLoaded = true;
 }
 
 Texture::~Texture()

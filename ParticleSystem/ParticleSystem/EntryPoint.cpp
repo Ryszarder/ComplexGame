@@ -4,6 +4,7 @@
 #include "Utilities.h"
 #include "ShaderProgram.h"
 #include "ParticleSystem.h"
+#include "ParticleManager.h"
 #include <iostream>
 
 #include "glm.hpp"
@@ -40,17 +41,21 @@ int main(void)
 	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	//ParticleSystem particle;
+	
 	//ParticleSystem particle2;
-
+	// 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 	ShaderProgram Premultiplied("ParticlePremultiplied.comp");
 	ShaderProgram Additive("ParticleAdditive.comp");
+
+	//ParticleManager particle3;
+	//particle3.SetPrem();
 
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
 	{
-		//ParticleSystem test;
+		ParticleSystem test;
 		//Clear the screen - eventually do rendering code here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -63,6 +68,10 @@ int main(void)
 
 		//test.Update(Additive);
 		//test.Draw(shader);
+
+		//particle3.UpdatePre();
+
+		//particle3.DrawParticle();
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);
