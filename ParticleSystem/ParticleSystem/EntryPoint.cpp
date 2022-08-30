@@ -39,31 +39,38 @@ int main(void)
 
 	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
-	ParticleSystem particle;
-	ParticleSystem particle2;
+	//ParticleSystem particle;
+	//ParticleSystem particle2;
 
 	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
 	ShaderProgram Premultiplied("ParticlePremultiplied.comp");
 	ShaderProgram Additive("ParticleAdditive.comp");
 
+
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
 	{
+		//ParticleSystem test;
 		//Clear the screen - eventually do rendering code here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		particle.Update(Premultiplied);
-		particle.Draw(shader); 
+		//particle.Update(Premultiplied);
+		//particle.Draw(shader); 
+		//
+		//particle2.Update(Additive);
+		//particle2.Draw(shader);
 
-		particle2.Update(Additive);
-		particle2.Draw(shader);
+		//test.Update(Additive);
+		//test.Draw(shader);
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);
 
 		//Tell GLFW to check if anything is going on with input, etc
 		glfwPollEvents();
+
+		//_CrtDumpMemoryLeaks();
 	}
 
 	//If we get to this point, the window has close, so clean up GLFW and exit

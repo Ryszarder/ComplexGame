@@ -123,7 +123,8 @@ void ParticleSystem::Draw(ShaderProgram& vertFragShader)
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	vertFragShader.ClearPrograms();
+	//vertFragShader.ClearPrograms();
+	ShaderProgram::ClearPrograms();
 }
 
 void ParticleSystem::ParticleTexture(std::string partTex)

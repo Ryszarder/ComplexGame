@@ -94,9 +94,9 @@ ShaderProgram::ShaderProgram(std::string vertexFilename, std::string geometryFil
 		std::cout << "It appears that things are pretty okay" << std::endl;
 	}
 
-	glDeleteShader(fragmentShader);
-	glDeleteShader(geometryShader);
 	glDeleteShader(vertexShader);
+	glDeleteShader(geometryShader);
+	glDeleteShader(fragmentShader);
 }
 
 ShaderProgram::ShaderProgram(std::string computeFilename)
@@ -155,6 +155,7 @@ ShaderProgram::~ShaderProgram()
 	//glDeleteShader(geometryShader);
 	//glDeleteShader(vertexShader);
 	//glDeleteShader(computeShader);
+	std::cout << "Hit delete" << std::endl;
 }
 
 

@@ -21,13 +21,13 @@ private:
 public:
 	ShaderProgram() {}
 
-	ShaderProgram(const ShaderProgram& other) = delete;
-	ShaderProgram& operator=(const ShaderProgram& other) = delete;
-
 	ShaderProgram(std::string vertexFilename, std::string geometryFilename, std::string fragmentFilename);
 	ShaderProgram(std::string computeFilename);
 
-	~ShaderProgram();	//TODO this should free the resources of shader.
+	~ShaderProgram();	//TODO this should free the resources of shader.'
+
+	ShaderProgram(const ShaderProgram& other) = delete;
+	ShaderProgram& operator=(const ShaderProgram& other) = delete;
 
 	bool IsEverythingOkay() const { return everythingIsOkay; }
 
