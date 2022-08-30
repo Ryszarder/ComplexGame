@@ -44,18 +44,19 @@ int main(void)
 	
 	//ParticleSystem particle2;
 	// 
-	ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-	ShaderProgram Premultiplied("ParticlePremultiplied.comp");
-	ShaderProgram Additive("ParticleAdditive.comp");
-
-	//ParticleManager particle3;
-	//particle3.SetPrem();
-
+	//ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
+	//ShaderProgram Premultiplied("ParticlePremultiplied.comp");
+	//ShaderProgram Additive("ParticleAdditive.comp");
+	
+	ParticleManager particle3;
+	particle3.SetPrem();
+	particle3.SetTexture();
+	//particle3.SetTexture("Texture/particle3.png");
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
 	{
-		ParticleSystem test;
+		//ParticleSystem test;
 		//Clear the screen - eventually do rendering code here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -69,9 +70,7 @@ int main(void)
 		//test.Update(Additive);
 		//test.Draw(shader);
 
-		//particle3.UpdatePre();
-
-		//particle3.DrawParticle();
+		particle3.DrawParticle();
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);
@@ -79,7 +78,7 @@ int main(void)
 		//Tell GLFW to check if anything is going on with input, etc
 		glfwPollEvents();
 
-		//_CrtDumpMemoryLeaks();
+		_CrtDumpMemoryLeaks();
 	}
 
 	//If we get to this point, the window has close, so clean up GLFW and exit

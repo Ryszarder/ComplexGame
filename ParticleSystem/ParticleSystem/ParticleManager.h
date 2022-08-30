@@ -19,13 +19,21 @@ public:
 
 	void DrawParticle();
 
-	void SetTexture(std::string textureSetter);
+	void SetTexture();
+
+	//bool WindowScreen();
+
+	void Run();
 
 private:
-	ParticleSystem* particle;
+	ParticleSystem* particle = nullptr;
 
-	ShaderProgram* shader;
-	ShaderProgram* premultiplied;
-	ShaderProgram* additive;
+	ShaderProgram* shader = nullptr;
+	ShaderProgram* premultiplied = nullptr;
+	ShaderProgram* additive = nullptr;
+
+	//GLFWwindow* window = nullptr;
+
+	std::string textureSet;
 };
 
