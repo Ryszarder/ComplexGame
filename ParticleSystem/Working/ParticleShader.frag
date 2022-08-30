@@ -6,24 +6,24 @@ in vec2 UVs;
 in vec4 Colour;
 in float Alpha;
 
-uniform sampler2D smoke;
-uniform sampler2D fire;
-//uniform sampler2D partText;
+//uniform sampler2D smoke;
+//uniform sampler2D fire;
+uniform sampler2D partTex;
 
 void main()
 {	
 	if(Alpha > 0.5f)
 	{
-		vec4 texColour = texture(smoke, UVs);
-		//vec4 texColour = texture(partTex, UVs);
+		//vec4 texColour = texture(smoke, UVs);
+		vec4 texColour = texture(partTex, UVs);
 		vec4 ParticleTex = texColour * Colour;
 		
 		FragColour = vec4(ParticleTex.rgb * ParticleTex.a, ParticleTex.a);
 	}
 	else
 	{
-		vec4 texColour = texture(fire, UVs);
-		//vec4 texColour = texture(partTex, UVs);
+		//vec4 texColour = texture(fire, UVs);
+		vec4 texColour = texture(partTex, UVs);
 		vec4 ParticleTex = texColour * Colour;
 		
 		FragColour = vec4(ParticleTex.rgb, 0.0);

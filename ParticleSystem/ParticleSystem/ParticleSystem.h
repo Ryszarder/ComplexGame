@@ -1,6 +1,4 @@
 #pragma once
-
-//#include "Graphics.h"
 #include "Particle.h"
 #include "Texture.h"
 

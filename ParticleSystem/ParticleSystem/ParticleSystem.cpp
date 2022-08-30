@@ -55,16 +55,11 @@ ParticleSystem::ParticleSystem()
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, particleVAO);
 	glBufferData(GL_SHADER_STORAGE_BUFFER, sizeof(Particle) * m_Vparticles.size(), m_Vparticles.data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
-
-	//m_Tsmoke = new Texture("Texture/particle3.png");
-	//m_Tfire = new Texture("Texture/Fire.png");
 }
 
 ParticleSystem::~ParticleSystem()
 {
 	glDeleteBuffers(1, &particleVAO);
-	//delete m_Tsmoke;
-	//delete m_Tfire;
 	delete m_Ttexture;
 }
 
@@ -112,12 +107,6 @@ void ParticleSystem::Draw(ShaderProgram& vertFragShader)
 
 	vertFragShader.SetUniform("mvpMatrix", projection * view * model);
 
-	//vertFragShader.SetUniform("smoke", 0);
-	//vertFragShader.SetUniform("fire", 1);
-
-	//m_Tsmoke->Bind(0);
-	//m_Tfire->Bind(1);
-
 	vertFragShader.SetUniform("partTex", 0);
 	
 	m_Ttexture->Bind(0);
@@ -126,7 +115,6 @@ void ParticleSystem::Draw(ShaderProgram& vertFragShader)
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	//vertFragShader.ClearPrograms();
 	ShaderProgram::ClearPrograms();
 }
 

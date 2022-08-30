@@ -5,7 +5,6 @@
 class ParticleManager
 {
 public:
-
 	ParticleManager();
 	~ParticleManager();
 
@@ -21,10 +20,6 @@ public:
 
 	void SetTexture();
 
-	//bool WindowScreen();
-
-	void Run();
-
 private:
 	ParticleSystem* particle = nullptr;
 
@@ -32,8 +27,5 @@ private:
 	ShaderProgram* premultiplied = nullptr;
 	ShaderProgram* additive = nullptr;
 
-	//GLFWwindow* window = nullptr;
-
 	std::string textureSet;
 };
-

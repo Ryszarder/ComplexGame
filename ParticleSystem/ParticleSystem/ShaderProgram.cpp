@@ -151,10 +151,6 @@ ShaderProgram::ShaderProgram(std::string computeFilename)
 ShaderProgram::~ShaderProgram()
 {
 	glDeleteProgram(shaderProgram);
-	//glDeleteShader(fragmentShader);
-	//glDeleteShader(geometryShader);
-	//glDeleteShader(vertexShader);
-	//glDeleteShader(computeShader);
 }
 
 

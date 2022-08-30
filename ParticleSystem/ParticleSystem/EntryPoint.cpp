@@ -35,50 +35,33 @@ int main(void)
 	//Tell GLAF to load all it's OpenGL functions
 	if (!gladLoadGL())
 		return -1;
-
-	//glEnable(GL_BLEND);
-
-	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
-	//ParticleSystem particle;
-	
-	//ParticleSystem particle2;
-	// 
-	//ShaderProgram shader("ParticleShader.vert", "ParticleShader.geom", "ParticleShader.frag");
-	//ShaderProgram Premultiplied("ParticlePremultiplied.comp");
-	//ShaderProgram Additive("ParticleAdditive.comp");
 	
 	ParticleManager particle3;
 	particle3.SetPrem();
 	particle3.SetTexture();
-	//particle3.SetTexture("Texture/particle3.png");
+
+	ParticleManager particle4;
+	particle4.SetAdd();
+	particle4.SetTexture();
 
 	//The main 'game' loop
 	while (!glfwWindowShouldClose(window))
 	{
-		//ParticleSystem test;
 		//Clear the screen - eventually do rendering code here
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//particle.Update(Premultiplied);
-		//particle.Draw(shader); 
-		//
-		//particle2.Update(Additive);
-		//particle2.Draw(shader);
-
-		//test.Update(Additive);
-		//test.Draw(shader);
-
+		particle3.UpdatePre();	 
 		particle3.DrawParticle();
+
+		particle4.UpdateAdd();
+		particle4.DrawParticle();
 
 		//Swapping the buffers - this means this frame is over
 		glfwSwapBuffers(window);
 
 		//Tell GLFW to check if anything is going on with input, etc
 		glfwPollEvents();
-
-		_CrtDumpMemoryLeaks();
 	}
 
 	//If we get to this point, the window has close, so clean up GLFW and exit
