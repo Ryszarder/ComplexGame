@@ -1,16 +1,5 @@
-#include "Graphics.h"
-
-#include <math.h>
-#include "Utilities.h"
-#include "ShaderProgram.h"
-#include "ParticleSystem.h"
 #include "ParticleManager.h"
 #include <iostream>
-
-#include "glm.hpp"
-
-#include "ext/matrix_transform.hpp"
-#include "ext/matrix_clip_space.hpp"
 
 int main(void)
 {
