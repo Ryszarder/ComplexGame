@@ -13,9 +13,6 @@
 
 ParticleSystem::ParticleSystem()
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
 	srand((unsigned)time(NULL));
 
 	glGenBuffers(1, &particleVAO);
@@ -75,6 +72,9 @@ void ParticleSystem::Update(ShaderProgram& particleShader)
 	particleShader.UseShader();
 
 	particleShader.SetUniform("deltaTime", deltaTime);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
 	glDispatchCompute(MAX_PARTICLES / WORK_GROUP_SIZE, 1, 1);
 	glMemoryBarrier(GL_SHADER_STORAGE_BARRIER_BIT);

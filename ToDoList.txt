@@ -1,0 +1,13 @@
+List of things to do
+
+1.
+ParticleSystem project will not have an EntryPoint and will build only libary
+
+2.
+IntegrateParticleSystem will have the libary add as well as GLFW, glm, GLAD
+
+3. 
+Need a readme file to explain that the user has to download GLFW, glm, GLAD as it won't work otherwise
+
+4.
+For the shaders and textures just put them in the working directorie
